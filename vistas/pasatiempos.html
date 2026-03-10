@@ -40,54 +40,96 @@
       <section>
         <span class="subtitle_pasatiempos">✦ Lo que disfruto hacer</span>
         <h2>Mis Pasatiempos</h2>
-        <div class="hobbies-grid">
-          <div class="hobby-card">
-            <img src="../imagenes/Viaje.jpg" alt="Viaje" class="hobby-image">
-            <div class="hobby-content">
-              <div class="hobby-icon">✈️</div>
-              <h3 class="hobby-title">Viajar y conocer nuevos lugares</h3>
-              <p class="hobby-description">Me gusta conocer nuevos lugares para vivir experiencias diferentes. Cuando viajo puedo desconectarme, aprender y ver el mundo desde otras perspectivas.</p>
+        <div class="carousel-hero">
+          <div class="carousel-track">
+            <div class="carousel-slide active">
+              <div class="slide-image">
+                <img src="../imagenes/Viaje.jpg" alt="Viajar">
+                <div class="slide-overlay"></div>
+              </div>
+              <div class="slide-content">
+                <div class="slide-icon">✈️</div>
+                <h3 class="slide-title">Viajar y conocer nuevos lugares</h3>
+                <p class="slide-description">Me gusta conocer nuevos lugares para vivir experiencias diferentes. Cuando viajo puedo desconectarme, aprender y ver el mundo desde otras perspectivas.</p>
+              </div>
+            </div>
+            <div class="carousel-slide">
+              <div class="slide-image">
+                <img src="../imagenes/Comida.jpg" alt="Comida">
+                <div class="slide-overlay"></div>
+              </div>
+              <div class="slide-content">
+                <div class="slide-icon">🧁</div>
+                <h3 class="slide-title">Salir a comer</h3>
+                <p class="slide-description">En mi tiempo libre también me gusta salir a conocer nuevos lugares y probar nuevas comidas, en especial cuando disfruto de estos momentos con familia o amigos.</p>
+              </div>
+            </div> 
+            <div class="carousel-slide">
+              <div class="slide-image">
+                <img src="../imagenes/Videojuegos.jpg" alt="Videojuegos">
+                <div class="slide-overlay"></div>
+              </div>
+              <div class="slide-content">
+                <div class="slide-icon">🎮</div>
+                <h3 class="slide-title">Videojuegos</h3>
+                <p class="slide-description">Disfruto jugar videojuegos pues me retan a pensar, reaccionar rápido y buscar soluciones mientras paso tiempo con mi hermano o amigos.</p>
+              </div>
+            </div>
+            <div class="carousel-slide">
+              <div class="slide-image">
+                <img src="../imagenes/Maquillaje.jpg" alt="Maquillaje">
+                <div class="slide-overlay"></div>
+              </div>
+              <div class="slide-content">
+                <div class="slide-icon">💄</div>
+                <h3 class="slide-title">Maquillaje</h3>
+                <p class="slide-description">Me gusta maquillarme porque es una forma de expresión y creatividad. Además, es una de las actividades que más me ayudan a relajarme y desconectarme del estrés.</p>
+              </div>
+            </div>
+            <div class="carousel-slide">
+              <div class="slide-image">
+                <img src="../imagenes/TiempoLibre.jpg" alt="Tiempo Libre">
+                <div class="slide-overlay"></div>
+              </div>
+              <div class="slide-content">
+                <div class="slide-icon">🍿</div>
+                <h3 class="slide-title">Tiempo de calidad en casa</h3>
+                <p class="slide-description">Disfruto ver series y películas, en especial cuando puedo compartir ese tiempo con mi familia o relajarme en casa con mi gatita.</p>
+              </div>
+            </div>  
+            <div class="carousel-slide">
+              <div class="slide-image">
+                <img src="../imagenes/Tejer.jpg" alt="Tejer">
+                <div class="slide-overlay"></div>
+              </div>
+              <div class="slide-content">
+                <div class="slide-icon">🧶</div>
+                <h3 class="slide-title">Tejer y pintar</h3>
+                <p class="slide-description">Me ayuda a liberar energía y puedo mantener un equilibrio entre mis responsabilidades y mi vida personal.</p>
+              </div>
             </div>
           </div>
-          <div class="hobby-card">
-            <img src="../imagenes/Comida.jpg" alt="Aprendizaje" class="hobby-image">
-            <div class="hobby-content">
-              <div class="hobby-icon">🧁</div>
-                <h3 class="hobby-title">Salir a comer</h3>
-                <p class="hobby-description">En mi tiempo libre también me gusta salir a conocer nuevos lugares y probar nuevas comidas, en especial cuando disfruto de estos momentos con familia o amigos.</p>
-            </div>
+          <button class="carousel-arrow prev" onclick="moveCarousel(-1)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M15 18l-6-6 6-6"/>
+            </svg>
+          </button>
+          <button class="carousel-arrow next" onclick="moveCarousel(1)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 18l6-6-6-6"/>
+            </svg>
+          </button>
+          <div class="carousel-progress">
+            <div class="progress-bar"></div>
           </div>
-          <div class="hobby-card">
-            <img src="../imagenes/Videojuegos.jpg" alt="Videojuegos" class="hobby-image">
-            <div class="hobby-content">
-              <div class="hobby-icon">🎮</div>
-              <h3 class="hobby-title">Videojuegos</h3>
-              <p class="hobby-description">Disfruto jugar videojuegos pues me retan a pensar, reaccinar rápido y buscar soluciones mientras paso tiempo con mi hermano o amigos.</p>
-            </div>
-          </div>
-          <div class="hobby-card">
-            <img src="../imagenes/Maquillaje.jpg" alt="Maquillaje" class="hobby-image">
-            <div class="hobby-content">
-              <div class="hobby-icon">💄</div>
-                <h3 class="hobby-title">Maquillaje</h3>
-                <p class="hobby-description">Me gusta maquillarme porque es un forma de expresión y creatividad. Además, es una de las actividades que más me ayudan a relajarme y desconectarme del estrés.</p>
-            </div>
-          </div>
-          <div class="hobby-card">
-            <img src="../imagenes/TiempoLibre.jpg" alt="Tiempo" class="hobby-image">
-            <div class="hobby-content">
-              <div class="hobby-icon">🍿</div>
-              <h3 class="hobby-title">Tiempo de calidad en casa</h3>
-              <p class="hobby-description">Disfruto ver series y películas, en especial cuando puedo compartir ese tiempo con mi familia o relajarme en casa con mi gatita.</p>
-            </div>
-          </div>
-          <div class="hobby-card">
-            <img src="../imagenes/Tejer.jpg" alt="Tejer" class="hobby-image">
-            <div class="hobby-content">
-              <div class="hobby-icon">🧶</div>
-                <h3 class="hobby-title">Tejer y pintar</h3>
-                <p class="hobby-description">Me ayuda a liberar energía y puedo mantener un equilibrio entre mis responsabilidades y mi vida personal.</p>
-            </div>
+            
+          <div class="carousel-indicators">
+            <button class="indicator active" onclick="goToSlide(0)"></button>
+            <button class="indicator" onclick="goToSlide(1)"></button>
+            <button class="indicator" onclick="goToSlide(2)"></button>
+            <button class="indicator" onclick="goToSlide(3)"></button>
+            <button class="indicator" onclick="goToSlide(4)"></button>
+            <button class="indicator" onclick="goToSlide(5)"></button>
           </div>
         </div>
       </section>
