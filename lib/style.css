@@ -20,7 +20,7 @@
     --accent: #c36b81;
     --accent-light: #d4879a;
     --text-primary: #2d1f24;
-    --text-secondary: #7a6a74;
+    --text-secondary: #4c4448;
     --text-light: #ffffff;
     --border: #f0d0d8;
 }
@@ -413,84 +413,193 @@ tbody tr:hover {
 }
 
 /*-- PASATIEMPOS --*/
-.hobbies-intro {
-    color: var(--text-secondary);
-    margin-bottom: 3rem;
-    font-style: italic;
-}
-
-.hobbies-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-}
-
-.hobby-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    height: 400px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    padding: 2rem;
+.carousel-hero {
     position: relative;
+    max-width: 1200px;
+    margin: 3rem auto;
+    border-radius: 20px;
     overflow: hidden;
-    transition: all 0.3s;
-    border-radius: 10px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--border);
 }
 
-.hobby-image {
+.carousel-track {
+    display: flex;
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.carousel-slide {
+    min-width: 100%;
+    position: relative;
+    height: 700px;
+}
+
+.slide-image {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    opacity: 0.3;
-    transition: opacity 0.3s;
 }
 
-.hobby-card:hover .hobby-image {
+.slide-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s ease, opacity 0.3s ease;
+    opacity: 0.3;
+}
+
+.carousel-slide.active .slide-image img {
+    transform: scale(1.05);
+}
+
+.slide-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        to bottom,
+        transparent 0%,
+        transparent 40%,
+        var(--bg-primary) 100%
+    );
     opacity: 0.5;
 }
 
-.hobby-content {
-    position: relative;
-    z-index: 1;
+/* ---- Texto ---- */
+.slide-content {
+    position: absolute;
+    bottom: 60px;
+    left: 50%;
+    transform: translateX(-50%) translateY(30px);
+    text-align: center;
+    max-width: 800px;
+    padding: 0 2rem;
+    opacity: 0;
+    transition: all 0.6s ease 0.3s;
 }
 
-/*-- Filtro para que los emojis se vean rositas --*/
-.hobby-icon {
+.carousel-slide.active .slide-content {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* Filtro rosita para los emojis */
+.slide-icon {
     font-size: 4rem;
     margin-bottom: 1rem;
-    filter: invert(18%) sepia(90%) saturate(200%) hue-rotate(300deg) brightness(85%) contrast(100%);
-    opacity: 1.5;
-}
-
-.hobby-title {
-    font-size: 1.3rem;
-    color: var(--text-primary);
-    margin-bottom: 0.5rem;
-}
-
-.hobby-description {
-    color: var(--text-primary);
-    line-height: 1.6;
-    margin-top: 1rem;
-    display: none;
-}
-
-.hobby-card:hover .hobby-description {
     display: block;
+    animation: float 3s ease-in-out infinite;
+    filter: invert(18%) sepia(90%) saturate(200%) hue-rotate(300deg) brightness(85%) contrast(100%);
 }
 
-.hobby-link {
-    color: var(--accent-light);
-    font-size: 0.85rem;
-    text-decoration: none;
-    letter-spacing: 1px;
-    margin-top: 0.5rem;
-    display: inline-block;
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.slide-title {
+    font-size: 2.2rem;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    font-family: 'Georgia', serif;
+    font-weight: 300;
+}
+
+.slide-description {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+/* ---- Flechas ---- */
+.carousel-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    color: var(--text-primary);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.carousel-arrow:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--bg-primary);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-arrow.prev {
+    left: 30px;
+}
+
+.carousel-arrow.next {
+    right: 30px;
+}
+
+.carousel-arrow svg {
+    width: 24px;
+    height: 24px;
+}
+
+/* ---- Barra de progreso ---- */
+.carousel-progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: var(--bg-secondary);
+    z-index: 10;
+}
+
+.progress-bar {
+    height: 100%;
+    background: var(--accent);
+    width: 0%;
+    transition: width 0.1s linear;
+}
+
+/* ---- Indicadores ---- */
+.carousel-indicators {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 12px;
+    z-index: 10;
+}
+
+.indicator {
+    width: 40px;
+    height: 4px;
+    border-radius: 2px;
+    background: rgba(255, 255, 255, 0.4);
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.indicator:hover {
+    background: rgba(255, 255, 255, 0.8);
+}
+
+.indicator.active {
+    background: var(--accent);
+    width: 60px;
 }
 
 /*-- PROYECTOS --*/
@@ -656,6 +765,24 @@ tbody tr:hover {
     display: block;
 }
 
+.btn-add {
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    color: var(--text-secondary);
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    transition: all 0.3s;
+    margin-bottom: 2rem;
+}
+
+.btn-add:hover {
+    border-color: var(--accent);
+    color: var(--accent-light);
+}
+
 @keyframes slideIn {
     from {
         opacity: 0;
@@ -665,6 +792,104 @@ tbody tr:hover {
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+/* ---- Lista de contactos guardados ---- */
+.contactos-list {
+    margin-top: 2rem;
+}
+
+.contacto-item {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    border-radius: 5px;
+    transition: all 0.3s;
+}
+
+.contacto-item:hover {
+    border-left-color: var(--accent-light);
+    transform: translateX(5px);
+}
+
+.contacto-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.contacto-nombre {
+    font-size: 1.2rem;
+    color: var(--text-primary);
+    font-family: 'Georgia', serif;
+}
+
+.contacto-fecha {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.contacto-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.contacto-dato {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.contacto-dato strong {
+    color: var(--accent-light);
+}
+
+.contacto-mensaje {
+    background: var(--bg-card);
+    padding: 1rem;
+    border-radius: 5px;
+    color: var(--text-secondary);
+    font-style: italic;
+    line-height: 1.6;
+}
+
+.contacto-preferencia {
+    display: inline-block;
+    background: var(--accent);
+    color: var(--bg-primary);
+    padding: 3px 10px;
+    border-radius: 3px;
+    font-size: 0.8rem;
+    margin-top: 0.5rem;
+}
+
+.btn-delete-contact {
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    color: var(--text-secondary);
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: all 0.3s;
+}
+
+.btn-delete-contact:hover {
+    border-color: #dc3545;
+    color: #dc3545;
+}
+
+.sin-contactos {
+    text-align: center;
+    color: var(--text-secondary);
+    padding: 3rem;
+    font-style: italic;
 }
 
 /*-- PIE DE PAGINA --*/
@@ -728,41 +953,6 @@ footer {
     border-top: 1px solid var(--border);
     color: var(--text-secondary);
     font-size: 0.85rem;
-}
-
-/*-- RESPONSIVE --*/
-@media (max-width: 768px) {
-    nav {
-        flex-direction: column;
-        gap: 1.5rem;
-    }
-    
-    .nav-links {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 15px;
-    }
-    
-    .hero {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-    }
-    
-    h1 {
-        font-size: 2.5rem;
-    }
-    
-    .profile-img {
-        width: 100%;
-        height: 300px;
-    }
-    
-    .footer-content {
-        flex-direction: column;
-        gap: 2rem;
-        text-align: center;
-    }
-    
 }
 
 /*-- CURSOR BOLITAS --*/
@@ -914,19 +1104,6 @@ footer {
         padding: 6px 12px;
     }
     
-    /* Pasatiempos para celular */
-    .hobbies-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .hobby-card {
-        height: 350px;
-    }
-    
-    .hobby-icon {
-        font-size: 3rem;
-    }
-    
     /* Pie de pagina para celular */
     .footer-content {
         flex-direction: column;
@@ -938,7 +1115,6 @@ footer {
     .hero {
         grid-template-columns: 1fr;
         gap: 2rem;
-        text-align: center;
         padding: 2rem 1rem;
     }
     
@@ -961,22 +1137,23 @@ footer {
     h1 {
         margin-left: 0 !important;
         font-size: 2.5rem;
-        text-align: center;
+        text-align: left !important;
     }
     
     .name-first,
     .name-last {
         display: block;
+        text-align: left !important;
     }
     
     .birth-date {
         margin-left: 0 !important;
-        text-align: center;
+        text-align: left !important;
     }
     
     .hero-description {
         margin-left: 0 !important;
-        text-align: center;
+        text-align: left !important;
         max-width: 90%;
     }
     
@@ -1027,4 +1204,87 @@ footer {
     .cursor-ring {
         display: none !important;
     }
+
+    /* Pasatiempos celular */
+    .carousel-slide {
+        height: 450px;
+    }
+    
+    .slide-icon {
+        font-size: 3rem;
+    }
+    
+    .slide-title {
+        font-size: 1.5rem;
+    }
+    
+    .slide-description {
+        font-size: 0.95rem;
+    }
+    
+    .carousel-arrow {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .carousel-arrow.prev {
+        left: 15px;
+    }
+    
+    .carousel-arrow.next {
+        right: 15px;
+    }
+    
+    .carousel-indicators {
+        bottom: 20px;
+    }
+    
+    .indicator {
+        width: 30px;
+    }
+    
+    .indicator.active {
+        width: 45px;
+    }
+    
+    .slide-content {
+        bottom: 50px;
+        padding: 0 1.5rem;
+    }
+
+}
+
+/*-- RESPONSIVE --*/
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    
+    .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+    }
+    
+    .hero {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    h1 {
+        font-size: 2.5rem;
+    }
+    
+    .profile-img {
+        width: 100%;
+        height: 300px;
+    }
+    
+    .footer-content {
+        flex-direction: column;
+        gap: 2rem;
+        text-align: center;
+    }
+    
 }
