@@ -58,6 +58,16 @@
             <input type="tel" id="telefono" placeholder="300 000 0000">
           </div>
           <div class="form-group">
+            <label>Motivo de contacto</label>
+            <select id="motivo" required>
+              <option value="">Selecciona un motivo...</option>
+              <option>Propuesta laboral</option>
+              <option>Colaboración en proyecto</option>
+              <option>Consulta técnica</option>
+              <option>Otro</option>
+            </select>
+          </div>
+          <div class="form-group">
             <label>Mensaje</label>
             <textarea id="mensaje" rows="5" required placeholder="Escribe tu mensaje aquí..."></textarea>
           </div>
@@ -68,11 +78,27 @@
                 <label><input type="radio" name="contacto" value="telefono"> 📞 Teléfono</label>
               </div>
           </div>
+          <div class="form-group">
+            <label class="checkbox-label">
+              <input type="checkbox" id="terminos" required>
+              <span>Acepto los términos y condiciones del tratamiento de datos</span>
+            </label>
+          </div>
           <button type="submit" class="btn-submit">Guardar contacto</button>
         </form>
         <div id="contactMessage" class="contact-message">
           ✅ Contacto guardado correctamente. ¡Gracias por escribirme 😍!
         </div>
+      </section>
+      <!-- Lista de contactos guardados -->
+      <section id="listaContactos">
+        <span class="subtitle_mensajes">✦ Mensajes recibidos</span>
+        <h2>Contactos Guardados</h2>
+        <div id="contactosList" class="contactos-list">
+          <!-- Mostrar quienes escribieron -->
+        </div>
+        <button id="btnLimpiar" class="btn-add" style="margin-top: 2rem; border-color: #9d4d6b; color: #c97b91;">Limpiar todos los contactos</button>
+      </section>
     </main>
 
     <footer>
