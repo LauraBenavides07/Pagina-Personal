@@ -21,11 +21,10 @@
 Portafolio-LauraBenavides/
 ├── imagenes/
 ├── lib/
-|   ├──style.css
-|   └──script.js
-├──vistas/
-|
-└──index.html
+│ ├── style.css
+│ └── script.js
+├── vistas/
+└── index.html
 
 
 ## 🚀 Cómo Ejecutar
